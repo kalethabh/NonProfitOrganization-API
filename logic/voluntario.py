@@ -1,44 +1,116 @@
-class Voluntario:
+class Voluntario(object):
     """
-    Clase que representa a un voluntario.
+    Class used to represent a voluntario
     """
-    def __init__(self, ID, Nombre, Apellido, telefono, Intereses, voluntarios_db):
-        self.ID = ID
-        self.Nombre = Nombre
-        self.Apellido = Apellido
-        self.telefono = telefono
-        self.Intereses = Intereses
-        self.actividades_asignadas = []  # Puedes usar una lista para rastrear las actividades asignadas
-        self.voluntarios_db = []
 
-    def agregar_voluntario(self):
-        # Crear un diccionario con los datos del voluntario
-        voluntario_data = {
-            'ID': self.ID,
-            'Nombre': self.Nombre,
-            'Apellido': self.Apellido,
-            'telefono': self.telefono,
-            'Intereses': self.Intereses
-        }
+    def __init__(self, number: int = 1, name: str = 'Name', surname: str = "surname", email: str = "email", intereses: str = 'intereses') -> object:
+        """ Person constructor object.
 
-        # Agregar el diccionario a la lista de voluntarios (o a tu base de datos real)
-        self.voluntarios_db.append(voluntario_data)
+        :param idn: A unique number that uniquely identifies the student in the system.
+        :type idn: int
+        :param name: name of student.
+        :type name: str
+        :param surname: last name of student.
+        :type surname: str
+        :returns: Student object
+        :rtype: object
+        :param email: email of voluntario
+        :type email: str
 
-    def eliminar_voluntario(self, voluntario_id):
-        # Buscar el voluntario por su ID y eliminarlo
-        for voluntario in self.voluntarios_db:
-            if voluntario['ID'] == voluntario_id:
-                self.voluntarios_db.remove(voluntario)
+        """
+        self.__number = number
+        self.__name = name
+        self.__surname = surname
+        self.__email = email
+        self.__intereses = intereses
 
-    def asignar_actividad(self, actividad):
-        # Agregar la actividad a la lista de actividades asignadas al voluntario
-        self.actividades_asignadas.append(actividad)
+    @property
+    def number(self) -> int:
+        """ Returns idn of the student.
+          :returns: idn of student.
+          :rtype: int
+        """
+        return str(self.__number)
 
-# Lista para almacenar voluntarios (simulación de una base de datos)
-voluntarios_db = []
+    @number.setter
+    def idn(self, val: int):
+        """ The id of the student.
+        :param id: id of student.
+        :type: int
+        """
+        self.__number = val
 
-# Ejemplo de uso de la clase Voluntario
+    @property
+    def name(self) -> str:
+        """ Returns the name of the student.
+          :returns: name of student.
+          :rtype: str
+        """
+        return self.__name
+
+    @name.setter
+    def name(self, name: str):
+        """ The name of the student.
+        :param name: name of student.
+        :type: str
+        """
+        self.__name = name
+
+    @property
+    def surname(self) -> str:
+        """ Returns the last name of the student.
+          :returns: last name of student.
+          :rtype: str
+        """
+        return self.__surname
+
+    @surname.setter
+    def surname(self, surname: str):
+        """ The last name of the student.
+        :param surname: last name of student.
+        :type: str
+        """
+        self.__surname = surname
+    
+    @property
+    def email(self) -> str:
+        """ Returns the last name of the student.
+        :returns: last name of student.
+        :rtype: str
+        """
+        return self.__email
+
+    @email.setter
+    def surname(self, email: str):
+        """ The last name of the student.
+        :param surname: last name of student.
+        :type: str
+        """
+        self.__email = email
+
+    @property
+    def intereses(self) -> str:
+        """ Returns the last name of the student.
+          :returns: last name of student.
+          :rtype: str
+        """
+        return self.__intereses
+
+    @intereses.setter
+    def intereses(self, intereses: str):
+        """ The last name of the student.
+        :param surname: last name of student.
+        :type: str
+        """
+        self.__intereses = intereses
+
+    def __str__(self):
+        return dict(idn=self.idn, name=self.name, surname=self.surname).__str__()
 
 
-# Luego, puedes asignar actividades al voluntario1
-actividad1 = "Ayuda en el comedor comunitario"
+if __name__ == '__main__':
+
+    edwin = Voluntario(number=23456, name="Edwin", surname="Puertas", email="adreess@.com", intereses="el campo" )
+    print(edwin)
+    juan = Voluntario()
+    print(juan)
