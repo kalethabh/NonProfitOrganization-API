@@ -1,17 +1,18 @@
 from flask import Flask, request, render_template, jsonify
 
-from logic.voluntario import Voluntario
-
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 # Lista para almacenar voluntarios (simulación de una base de datos)
 voluntarios_db = []
 
+@app.route("/")
+def index():
+    print('Request for index page received')
+    return render_template("Home.html")
 
 @app.route('/voluntario')
 def voluntario():
     return render_template('voluntario.html')
-
 
 @app.route('/agrevoluntario', methods=['POST'])
 def add_voluntario():
@@ -30,8 +31,7 @@ def add_voluntario():
     }
 
     voluntarios_db.append(nuevo_voluntario)
-    return jsonify({"mensaje": "Voluntario agregado con éxito"})
-
+    return jsonify({"mensaje": "Voluntario agregado con éxito", "nuevo_voluntario": nuevo_voluntario})
 
 if __name__ == '__main__':
     app.run(debug=True)
