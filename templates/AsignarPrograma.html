@@ -5,16 +5,16 @@
 </head>
 <body>
     <h1>Registro en Programa</h1>
-    <form action="/unirse-programa/{id_programa}/{id_voluntario}" method="POST">
-        <label for="id_programa">ID del Programa:</label>
-        <input type="text" name="id_programa" id="id_programa" placeholder="Ingresa el ID del programa" required>
+    <form action="/unirse-programa" method="POST">
+        <label for="programa_id">Nombre del Programa:</label>
+        <input type="text" name="programa_id" id="programa_id" placeholder="Ingresa el ID del programa" required>
         <br><br>
-
-        <label for="id_voluntario">ID del Voluntario:</label>
-        <input type="text" name="id_voluntario" id="id_voluntario" placeholder="Ingresa el ID del voluntario" required>
+    
+        <label for="voluntario_id">ID del Voluntario:</label>
+        <input type="text" name="voluntario_id" id="voluntario_id" placeholder="Ingresa el ID del voluntario" required>
         <br><br>
-
+    
         <input type="submit" value="Registrarse en el Programa">
-    </form>
+    </form>    
 </body>
 </html>

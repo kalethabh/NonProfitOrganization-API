@@ -40,16 +40,22 @@ def add_voluntario():
     return jsonify({"mensaje": "Voluntario agregado con éxito", "nuevo_voluntario": nuevo_voluntario})
 
 # Ruta para eliminar voluntario por ID
-@app.route('/delete-voluntario/<id>', methods=['GET'])
-def delete_voluntario(id):
+@app.route('/delete-voluntario', methods=['GET'])
+def form_delete_voluntario():
+    return render_template('FormDeleteVoluntario.html')
+
+# Ruta para eliminar voluntario por ID
+@app.route('/delete-voluntario', methods=['POST'])
+def delete_voluntario():
+    ID = request.form.get('ID')
     for voluntario in voluntarios_db:
-        if voluntario['ID'] == id:
+        if voluntario['ID'] == ID:
             voluntarios_db.remove(voluntario)
             return jsonify({"mensaje": "Voluntario eliminado con éxito"})
     return jsonify({"mensaje": "Voluntario no encontrado"})
 
 # Ruta para mostrar todos los voluntarios
-@app.route('/voluntarios', methods=['GET'])
+@app.route('/voluntarios')
 def mostrar_voluntarios():
     return jsonify({"voluntarios": voluntarios_db})
 
@@ -84,34 +90,22 @@ def AsignarPrograma():
     return render_template('AsignarPrograma.html')
 
 # Ruta para que los voluntarios se unan a un programa
-@app.route('/unirse-programa/<int:programa_id>/<int:voluntario_id>', methods=['GET'])
-def unirse_programa(programa_id, voluntario_id):
-    programa_encontrado = None
-    voluntario_encontrado = None
+@app.route('/unirse-programa', methods=['POST'])
+def unirse_programa():
+    programa_id = request.form.get('programa_id')
+    voluntario_id = request.form.get('voluntario_id')
 
-    print(programa_id)
-    print(voluntario_id)
-
-    # Buscar el programa por su ID
-    for programa in programas_db:
-        if programa['ID'] == programa_id:
-            programa_encontrado = programa
-            break
+    # Buscar el programa por su nombre
+    programa_encontrado = next((programa for programa in programas_db if programa['nombre'] == programa_id), None)
 
     # Buscar el voluntario por su ID
-    for voluntario in voluntarios_db:
-        if voluntario['ID'] == voluntario_id:
-            voluntario_encontrado = voluntario
-            break
+    voluntario_encontrado = next((voluntario for voluntario in voluntarios_db if voluntario['ID'] == voluntario_id), None)
 
     if programa_encontrado and voluntario_encontrado:
         programa_encontrado['participantes'].append(voluntario_encontrado)
         return jsonify({"mensaje": "Voluntario agregado al programa con éxito"})
     else:
         return jsonify({"mensaje": "Programa o voluntario no encontrado"})
-
-if __name__ == '__main__':
-    app.run(debug=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
