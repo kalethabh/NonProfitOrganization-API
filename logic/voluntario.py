@@ -12,11 +12,10 @@ class Voluntario(object):
         :type name: str
         :param surname: last name of student.
         :type surname: str
-        :returns: Student object
-        :rtype: object
         :param email: email of voluntario
         :type email: str
-
+        :returns: Voluntario object
+        :rtype: object
         """
         self.__number = number
         self.__name = name
