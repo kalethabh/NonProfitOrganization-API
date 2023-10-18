@@ -41,16 +41,20 @@ def add_voluntario():
         'Telefono': Telefono,
         'Intereses': Intereses
     }
-    
+
     voluntarios_db.append(nuevo_voluntario)
     return jsonify({"mensaje": "Voluntario agregado con éxito", "nuevo_voluntario": nuevo_voluntario})
 
 # Ruta para eliminar voluntario por ID
+
+
 @app.route('/eliminar-voluntario', methods=['GET'])
 def form_delete_voluntario():
     return render_template('FormDeleteVoluntario.html')
 
 # Ruta para eliminar voluntario por ID
+
+
 @app.route('/eliminar-voluntario', methods=['POST'])
 def delete_voluntario():
     ID = request.form.get('ID')
@@ -61,16 +65,22 @@ def delete_voluntario():
     return jsonify({"mensaje": "Voluntario no encontrado"})
 
 # Ruta para mostrar todos los voluntarios
+
+
 @app.route('/voluntarios')
 def mostrar_voluntarios():
     return jsonify({"voluntarios": voluntarios_db})
 
 # Ruta para mostrar formulario de registro de programa
+
+
 @app.route('/register-programa')
 def programa():
     return render_template('FormularioPrograma.html')
 
 # Ruta para registrar un programa
+
+
 @app.route('/create-programa', methods=['POST'])
 def add_programa():
     nombre = request.form.get('nombre')
@@ -86,16 +96,22 @@ def add_programa():
     return jsonify({"mensaje": "Programa agregado con éxito", "nuevo_programa": nuevo_programa})
 
 # Ruta para mostrar todos los programas
+
+
 @app.route('/programas', methods=['GET'])
 def mostrar_programas():
     return jsonify({"programas": programas_db})
 
 # Ruta para mostrar formulario de registro en programa
+
+
 @app.route('/asignar-programa')
 def AsignarPrograma():
     return render_template('AsignarPrograma.html')
 
 # Ruta para que los voluntarios se unan a un programa
+
+
 @app.route('/unirse-programa', methods=['POST'])
 def unirse_programa():
     programa_id = request.form.get('programa_id')
