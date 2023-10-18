@@ -41,7 +41,7 @@ def add_voluntario():
         'Telefono': Telefono,
         'Intereses': Intereses
     }
-
+    
     voluntarios_db.append(nuevo_voluntario)
     return jsonify({"mensaje": "Voluntario agregado con éxito", "nuevo_voluntario": nuevo_voluntario})
 

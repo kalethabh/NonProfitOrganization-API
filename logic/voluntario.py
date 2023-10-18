@@ -6,11 +6,11 @@ class Voluntario(object):
     def __init__(self, number: int = 1, name: str = 'Name', surname: str = "surname", email: str = "email", intereses: str = 'intereses') -> object:
         """ Person constructor object.
 
-        :param idn: A unique number that uniquely identifies the student in the system.
+        :param idn: A unique number that uniquely identifies the voluntario in the system.
         :type idn: int
         :param name: name of student.
         :type name: str
-        :param surname: last name of student.
+        :param surname: last name of voluntario.
         :type surname: str
         :param email: email of voluntario
         :type email: str

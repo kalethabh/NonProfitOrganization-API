@@ -12,7 +12,7 @@ class Donante(object):
         :type name: str
         :param surname: apellido del donante
         :type surname: str
-        :returns: Student object
+        :returns: Donante object
         :rtype: object
         :param email: email of voluntario
         :type email: str
