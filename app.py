@@ -67,7 +67,7 @@ def delete_voluntario():
 # Ruta para mostrar todos los voluntarios
 
 
-@app.route('/voluntarios')
+@app.route('/voluntarios', methods=['GET'])
 def mostrar_voluntarios():
     return jsonify({"voluntarios": voluntarios_db})
 
